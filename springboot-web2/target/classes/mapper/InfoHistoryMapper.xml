@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobe.dao.InfoHistoryMapper">
+
+    <insert id="createInfoHistory" parameterType="com.kobe.vo.InfoHistory" >
+        insert into InfoHistory
+        (Theme,Title,Lable,idc,StartTime,EndTime,Lat,Ing,Name,img,idt,State)
+        values
+        (#{Theme},#{Title},#{Lable},#{idc},#{StartTime},
+        #{EndTime},#{Lat},#{Ing},#{Name},#{img},#{idt},#{State})
+        <!--<selectKey order="AFTER" keyProperty="id">
+        select LAST_INSERT_ID()
+        </selectKey>-->
+
+    </insert>
+    <select id="selectByStu"  parameterType="int" resultType="com.kobe.vo.InfoHistory">
+        select
+            i.*,s.State as zhuangtai
+        from
+            InfoHistory i,stu_middle s
+        where
+             s.idi=i.id and s.ids=#{ids}
+    </select>
+
+    <select id="getLastNewId" resultType="int">
+        select @@identity
+    </select>
+
+    <select id="selectInfoById" parameterType="int" resultType="com.kobe.vo.InfoHistory">
+        select
+        i.*
+        from
+        InfoHistory i
+        where
+        i.id=#{idi}
+    </select>
+
+    <select id="selectInfohistory" resultType="map" parameterType="int">
+        select
+            i.*,s.State
+        from
+        InfoHistory i,stu_middle s
+        where
+        s.idi=i.id and s.ids=#{idu}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobe.dao.SignMapper">
+
+    <insert id="addSign" parameterType="string">
+    insert into sign (origin)
+    values (#{origin})
+    </insert>
+
+
+    <select id="getNewSignId"  parameterType="string" resultType="int">
+    select
+        s.id
+    from
+        sign s
+    where
+       s.origin=#{origin}
+    </select>
+
+    <select id="isAbsent"  parameterType="string" resultType="int">
+    select
+        count(*)
+    from
+        sign s
+    where
+       s.origin=#{origin}
+    </select>
+
+    <select id="getSignInfo" resultType="com.kobe.vo.SignInfo">
+    select
+        s.id as ids,s.origin,u.id as idu,m.ids
+    from
+        sign s,user u,middle m
+    where
+       m.idc=#{idc} and m.idu=u.id and m.ids=s.id
+    </select>
+
+    <update id="updateSignFromTeacher">
+    update
+        sign s
+    set
+        s.origin=#{origin}
+    where
+        s.id=#{ids};
+    </update>
+
+    <update id="updateSignedForOne">
+    update
+        sign s
+    set
+        s.signed=#{signed}
+    where
+        s.id=#{ids};
+    </update>
+    <!--赋值全部-->
+    <update id="updateSignKey" >
+    update
+        sign s,middle m
+    set
+        s.signed=#{signed}
+    where
+        s.id=m.ids and m.idc=#{idc}
+    </update>
+
+    <select id="getSigned" resultType="com.kobe.pojo.Sign" parameterType="int">
+    select
+        s.id,s.origin,s.signed
+    from
+        sign s,middle m
+    where
+       m.idc=#{idc} and m.idu=#{idu} and s.id=m.ids;
+    </select>
+
+    <!--<select id="getStuSign"  resultType="map" parameterType="int">
+        select
+            s.origin,u.realname,m.idc,c.name
+        from
+            sign s,middle m,user u,curriculum c
+        where
+            m.idu=#{idu} and s.id=m.ids and u.id=m.idu and m.idc=c.id
+    </select>
+
+
+    <select id="getTeaSign"  parameterType="int"  resultType="map">
+        select
+            s.origin,u.realname,c.name
+        from
+            sign s,middle m,user u,curriculum c
+        where
+            m.idu=#{idu}  and s.id=m.ids and u.id=m.idu and m.idc=c.id
+    </select>-->
+
+    <select id="getAllSigns" parameterType="int" resultType="map">
+        select
+            s.origin,u.realname,c.name
+        from
+            sign s,middle m,user u,curriculum c
+        where
+            m.idu=#{idu}  and s.id=m.ids and u.id=m.idu and m.idc=c.id
+    </select>
+    <insert id="insertInto" >
+        <!--insert into sign (origin,signed)
+        values (#{origin},#{signed})
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+        select LAST_INSERT_ID()
+        </selectKey>-->
+        insert into
+        sign (origin,signed)
+        values
+        ('12312','test') ;select @@Identity
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

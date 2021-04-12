@@ -1,0 +1,16 @@
+POST http://jiangjilong.fun:8080/kobe/user/login?password=222&account=222
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-12-24T084414.200.json
+
+###
+
+POST http://jiangjilong.fun/kobe/user/login?password=222&account=222
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-12-24T084401.404.html
+
+###
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Signin Template for Bootstrap</title>
+		<!-- Bootstrap core CSS -->
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link th:href="@{css/dashboard.css}" rel="stylesheet">
+	</head>
+
+	<body class="text-center">
+		<form class="form-signin" th:action="@{/login}">
+			<img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
+			<h1 class="h3 mb-3 font-weight-normal" >Please sign in</h1>
+			<!--错误提示信息！-->
+			<p style="color: red" th:text="${msg}"  th:if="${not #strings.isEmpty(msg)}"></p>
+			<label class="sr-only">Username</label>
+			<input type="text" class="form-control" name="account" placeholder="account" required="" autofocus="">
+			<label class="sr-only">Password</label>
+			<input type="password" name="password"class="form-control" placeholder="password" required="">
+			<div class="checkbox mb-3">
+				<label><input type="checkbox" value="remember-me"> Remember me</label>
+
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+
+		</form>
+		<div style="padding: 40px">
+			<font color="black"><strong>QQ一键登录</strong></font><a href="/qqLogin"><img src="/img/qqlogin.png"/></a>
+		</div>
+		<p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+		<a class="btn btn-sm">中文</a>
+		<a class="btn btn-sm">English   | jiangjilong版权所有</a>
+		<p><i class="sprite bg1"></i>
+			<a href="http://www.shjbzx.cn" target="_blank">上海互联网举报中心</a>
+			| <a href="http://jbts.mct.gov.cn/" target="_blank">12318全国文化市场举报网站</a> |
+			<i class="sprite bg2"></i>
+			<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31011002002436" target="_blank">陕ICP备2020018774号-1</a> |
+			<a href="mailto:userreport@bilibili.com">儿童色情信息举报专区</a> | <a href="http://www.shdf.gov.cn/shdf/channels/740.html">扫黄打非举报</a></p>
+	</body>
+
+</html>

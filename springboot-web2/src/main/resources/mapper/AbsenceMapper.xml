@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobe.dao.AbsenceMapper">
+
+    <insert id="insertOne" parameterType="com.kobe.pojo.Absence" >
+        insert into absence
+        (idu,nameText,idi,type1,type2,startTimeText,endTimeText,
+            placeText,myPhoneText,otherPhoneText ,leaveSituationText,img)
+        values
+        (#{idu},#{nameText},#{idi},#{type1},#{type2},#{startTimeText},#{endTimeText}
+        ,#{placeText},#{myPhoneText},#{otherPhoneText },#{leaveSituationText},#{img})
+    </insert>
+
+    <select id="getAllAbsences" resultType="com.kobe.pojo.Absence">
+        select * from absence where idu=#{idu}
+    </select>
+
+    <select id="getAllAbsencesByTeacher" resultType="map">
+        select
+            a.*,i.*
+        from
+            absence a   ,InfoHistory i
+        where
+            a.idi=i.id and i.idt=#{idu}
+    </select>
+
+    <update id="updateAbsenceState">
+        update
+            absence  a
+        set
+            a.pass=#{pass} ,a.messages=#{messages}
+        where
+            a.id=#{id}
+    </update>
+
+    <select id="selectById" parameterType="int" resultType="com.kobe.pojo.Absence">
+        select * from absence a where a.id=#{id}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

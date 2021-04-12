@@ -1,0 +1,44 @@
+# 关闭模板引擎的缓冲
+# spring.thymeleaf.cache=false
+
+# 添加虚拟路径
+# server.servlet.context-path=/kuang
+# ---使用yml文件配置的方式
+server:
+  port: 80
+  servlet:
+    context-path: /
+
+
+spring:
+  datasource:
+    username: root
+    password: 12345678
+    url: jdbc:mysql://47.108.192.62:3306/dataBase?characterEncoding=GBK&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver # 官方推荐这样写
+  thymeleaf:
+    cache: false
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.kobe.*
+
+
+# 配置短信的参数
+sms:
+  default: # 设置超时时间
+    connect:
+      timeout: sun.net.client.defaultConnectTimeout
+    read:
+      timeout: sun.net.client.defaultReadTimeout
+  product: Dysmsapi # 产品名称
+  domain: dysmsapi.aliyuncs.com # 产品域名
+  access:
+    key:
+      secret: cHe5sdE0pAPTzRI1hafmc6JXW3NFjt # accessSecret
+      id: LTAI4G4kqMt1tNHDma7QubUc # accessKeyId
+  template:
+    code: SMS_206539138 # 模版CODE
+  timeout: 10000
+#showSql

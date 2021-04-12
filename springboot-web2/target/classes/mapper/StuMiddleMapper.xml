@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobe.dao.StuMiddleMapper">
+
+    <insert id="insert" >
+        insert into stu_middle
+        (idi,ids,state)
+        values
+        (#{idi},#{ids},#{state})
+    </insert>
+
+    <update id="updateState"  >
+        update
+            stu_middle s
+        set
+            s.State=#{State}
+        where
+            s.ids=#{ids} and s.idi=#{idi}
+    </update>
+
+    <select id="getStuHistory" resultType="InfoHistory">
+        select
+        s.State,i.Name,i.StartTime,c.name
+        for
+        stu_middle s,InfoHistory i,curriculum c
+        where
+        s.idi=i.id and s.ids=#{idu} and c.id=i.idc
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

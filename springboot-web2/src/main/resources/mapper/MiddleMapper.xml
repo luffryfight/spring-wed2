@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobe.dao.MiddlerMapper">
+
+    <insert id="addMiddle" parameterType="com.kobe.vo.SignInfo">
+    insert into
+        middle (idu,idc,ids)
+    values
+        (#{idu},#{idc},#{ids})
+    </insert>
+
+
+    <select id="isAbsent"  resultType="int" >
+    select
+        count(*)
+    from
+        middle m
+    where
+       m.idu=#{idu} and m.idc=#{idc}
+    </select>
+
+
+    <select id="isAbsentT"  resultType="int" >
+    select
+        count(*)
+    from
+        middle m
+    where
+       m.idu=#{idu}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

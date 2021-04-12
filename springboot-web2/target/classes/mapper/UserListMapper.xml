@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobe.dao.UserListMapper">
+
+    <resultMap id="BaseResultMap" type="User">
+        <result column="id" jdbcType="INTEGER" property="id" />
+<!--        <result column="userName" jdbcType="VARCHAR" property="userName" />
+        <result column="passWord" jdbcType="VARCHAR" property="passWord" />
+        <result column="realName" jdbcType="VARCHAR" property="realName" />-->
+    </resultMap>
+
+
+    <select id="getPhone" resultType="string" parameterType="int">
+    select
+        u.phone
+    from
+        user u
+    where
+        u.id=#{id}
+    </select>
+
+    <select id="getUserList" resultType="User">
+        select * from user
+    </select>
+
+
+    <select id="selectBaseInfo" parameterType="int">
+    select
+        u.img,u.realname,u.idcard,u.gender,u.profession,
+        u.describe,u.nation
+    from
+        user u
+    where
+        u.id=#{idu}
+    </select>
+    <!---->
+    <select id="getStudents" resultType="com.kobe.vo.TeacherToStudent">
+    select
+        u.realname,c.name,s.origin,u.account,c.week,
+        c.timestart,c.classname,c.id as idc,c.teacher,u.id as ids
+    from
+        user u,middle m,curriculum c,sign s
+    where
+         m.idc=c.id and u.id=m.idu and c.id=#{idc}  and m.ids=s.id
+
+    </select>
+
+    <!--添加  #{}获取的是user定义类getter的量-->
+    <insert id="addUser" parameterType="com.kobe.pojo.User">
+        insert into user
+        (account,password,realname,phone,picture,img,isteacher)
+        values
+        (#{account},#{password},#{realname},#{phone},#{picture},'000',#{isteacher})
+    </insert>
+
+    <!--老师vo-->
+    <select id="isTeacher" resultType="com.kobe.vo.Teacher">
+    select
+        u.realname,u.password,u.isteacher,u.id,u.img
+    from
+        user u
+    where
+        u.account=#{account}
+    </select>
+
+    <update id="reset_password"  >
+    update
+        user u
+    set
+       u.password=#{newPassword}
+    where
+         u.id=#{idu} ;
+    </update>
+
+
+    <update id="update" parameterType="com.kobe.pojo.User">
+        update user
+        <set>
+            <if test="img != null">
+                img = #{img},
+            </if>
+            <if test="gender != null">
+                gender = #{gender}
+            </if>
+            <if test="describe != null">
+                describe = #{describe}
+            </if>
+            <if test="nation != null">
+                nation = #{nation}
+            </if>
+            <if test="prefession != null">
+                prefession = #{prefession}
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+</mapper>

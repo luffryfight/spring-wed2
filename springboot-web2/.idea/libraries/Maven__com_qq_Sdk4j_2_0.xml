@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.qq:Sdk4j:2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/com/qq/Sdk4J/2.0/Sdk4J-2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.m2/repository/com/qq/Sdk4j/2.0/Sdk4j-2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.m2/repository/com/qq/Sdk4j/2.0/Sdk4j-2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

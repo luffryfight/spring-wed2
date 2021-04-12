@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kobe.dao.CurriculumMapper">
+
+    <insert id="addCurriculum" parameterType="com.kobe.pojo.Curriculum">
+    insert into curriculum (name,week, classname,
+        teacher, timestart, timeend,
+        period, issingle,color)
+    values (#{name}, #{week},
+        #{classname}, #{teacher}, #{timestart},
+        #{timeend},#{peroid},#{issingle},#{color})
+    </insert>
+
+
+    <select id="getCurriculums" parameterType="int" resultType="com.kobe.pojo.Curriculum">
+    select
+        c.name,c.classname,c.week,c.issingle,c.timestart,c.teacher,c.id
+    from
+        middle m,curriculum c
+    where
+        m.idc=c.id  and m.idu=${idu}
+    </select>
+    
+    <select id="curriculumInfo" resultType="Curriculum" parameterType="int">
+    select
+         *
+    from
+         curriculum c
+    where
+         c.id=#{idc}
+    </select>
+
+    <!--- # 可以不用对比这么多的-->
+    <select id="getNewCurriculumId" resultType="int" parameterType="Curriculum">
+    select
+        c.id
+    from
+        curriculum c
+    where
+        c.name=#{name} and c.week=#{week} and c.classname=#{classname}
+    </select>
+
+    <select id="getIsAbsent" resultType="int" parameterType="Curriculum">
+    select
+        count(*)
+    from
+        curriculum c
+    where
+        c.name=#{name} and c.week=#{week} and
+        c.classname=#{classname} and c.timestart=#{timestart} and
+        c.timeend=#{timeend}  and c.issingle=#{issingle}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
