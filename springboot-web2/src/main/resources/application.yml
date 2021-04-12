@@ -12,9 +12,9 @@ server:
 
 spring:
   datasource:
-    username: root
-    password: 12345678
-    url: jdbc:mysql://47.108.192.62:3306/dataBase?characterEncoding=GBK&serverTimezone=Asia/Shanghai
+    username: xxxxx
+    password: xxxx
+    url: jdbc:mysql://47.108.192.62:xxxx/xxxx?characterEncoding=GBK&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver # 官方推荐这样写
   thymeleaf:
     cache: false
@@ -36,9 +36,9 @@ sms:
   domain: dysmsapi.aliyuncs.com # 产品域名
   access:
     key:
-      secret: cHe5sdE0pAPTzRI1hafmc6JXW3NFjt # accessSecret
-      id: LTAI4G4kqMt1tNHDma7QubUc # accessKeyId
+      secret: xxxxxx # accessSecret
+      id: xxxxx # accessKeyId
   template:
-    code: SMS_206539138 # 模版CODE
+    code: Sxxxx # 模版CODE
   timeout: 10000
 #showSql
